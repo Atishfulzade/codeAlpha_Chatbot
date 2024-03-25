@@ -4,7 +4,7 @@ import InputForm from "./component/input";
 import Response from "./component/response";
 import { io } from "socket.io-client";
 
-const server = "localhost:3000";
+const server = "http://localhost:3000";
 const socket = io(server);
 
 function App() {
