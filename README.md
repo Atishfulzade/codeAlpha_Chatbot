@@ -1,7 +1,5 @@
 **TextiAi Chatbot**
 
-![TextiAi Chatbot]([https://code-alpha-chatbot-17ospy39u-atishs-projects-55a5a6a4.vercel.app/](https://code-alpha-chatbot.vercel.app/))
-
 This repository contains the source code for TextiAi Chatbot, a project created using the OpenAI API, React, Tailwind CSS, Socket.IO, Node.js, and Express.js.
 
 ### Introduction
