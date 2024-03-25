@@ -10,11 +10,12 @@ require("dotenv").config();
 
 // Initialize OpenAI API
 app.use(
-  cors({
-    origin: ["https://code-alpha-chatbot-server.vercel.app/"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
+  cors()
+  //   {
+  //   origin: ["https://code-alpha-chatbot-server.vercel.app/"],
+  //   methods: ["POST", "GET"],
+  //   credentials: true,
+  // }
 );
 const openai = new OpenAI({ apiKey: process.env.OPEN_AI_API });
 // WebSocket connection
