@@ -8,7 +8,7 @@ const Response = ({ messages, responseContainerRef }) => {
   return (
     <div
       ref={responseContainerRef}
-      className="w-full dark:bg-slate-800 h-[85vh] px-[8vw] md:px-[280px] py-5 overflow-x-auto"
+      className="w-full dark:bg-slate-800 h-[85vh] px-[4vw] md:px-[280px] py-5 overflow-x-auto"
     >
       {messages.map((message, index) => (
         <div key={index} className="flex flex-col">
