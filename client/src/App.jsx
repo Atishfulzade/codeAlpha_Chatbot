@@ -14,7 +14,6 @@ function App() {
   const responseContainerRef = useRef(null);
 
   const scrollToBottom = () => {
-    console.log("Scrolling...");
     responseContainerRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
