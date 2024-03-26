@@ -7,7 +7,6 @@ import { io } from "socket.io-client";
 const server = "http://localhost:3000";
 
 function App() {
-  const [inputData, setInputData] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [messages, setMessages] = useState([]);
   const responseContainerRef = useRef(null);
