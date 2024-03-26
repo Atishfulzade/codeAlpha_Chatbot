@@ -4,47 +4,49 @@ import InputForm from "./component/input";
 import Response from "./component/response";
 import { io } from "socket.io-client";
 
-const server = "https://code-alpha-chatbot-server.vercel.app";
-const socket = io(server);
+const server = "http://localhost:3000";
 
 function App() {
   const [inputData, setInputData] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [messages, setMessages] = useState([]);
   const responseContainerRef = useRef(null);
+  const socketRef = useRef(null);
 
-  const scrollToBottom = () => {
-    responseContainerRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  useEffect(() => {
+    // Initialize socket connection only once
+    socketRef.current = io(server);
+
+    // Define event listeners
+    socketRef.current.on("message", (data) => {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: data.message, isBot: true },
+      ]);
+    });
+
+    // Cleanup function to disconnect socket when component unmounts
+    return () => {
+      socketRef.current.disconnect();
+    };
+  }, []);
 
   const handleInputSubmit = (inputValue) => {
     if (inputValue.trim() !== "") {
       // Emitting the input value to the server
-      socket.emit("message", { message: inputValue });
-      // Updating the input data state
-      setInputData(inputValue);
+      socketRef.current.emit("message", { message: inputValue });
+      // Update messages state with the user message
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: inputValue, isBot: false },
+      ]);
     }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // Scroll to the bottom of the message container
+    responseContainerRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
-  useEffect(() => {
-    socket.on("message", (data) => {
-      // Update messages state with both user and bot messages
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: inputData, isBot: false },
-        { text: data.message, isBot: true }, // Use the received data directly as a string
-      ]);
-    });
-
-    // Cleanup function to remove the event listener
-    return () => {
-      socket.off("message");
-    };
-  }, [inputData]);
 
   return (
     <div

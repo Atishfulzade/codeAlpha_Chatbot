@@ -19,6 +19,7 @@ const Response = ({ messages, responseContainerRef }) => {
                 className="w-5 h-5"
                 alt="logo"
               />
+
               <p className="dark:text-slate-100 text-slate-800 font-medium">
                 {message.isBot ? "TextiAi" : "You"}
               </p>
