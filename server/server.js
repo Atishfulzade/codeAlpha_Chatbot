@@ -5,45 +5,42 @@ const socketIo = require("socket.io");
 const OpenAI = require("openai");
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server, {
+  cors: {
+    origin: "*", // Adjust this to match the domain of your deployed frontend
+    methods: ["GET", "POST"],
+  },
+});
 require("dotenv").config();
 
 // Initialize OpenAI API
-app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
 const openai = new OpenAI({ apiKey: process.env.OPEN_AI_API });
+
+// Middleware for CORS and JSON parsing
+app.use(cors());
+app.use(express.json());
+
 // WebSocket connection
 io.on("connection", (socket) => {
   console.log("New client connected");
 
-  // Listen for incoming messages from the frontend
   socket.on("message", async (data) => {
     console.log("Message received:", data);
-
     try {
-      // Send user's message to ChatGPT and receive response
       const completion = await openai.chat.completions.create({
         messages: [{ role: "user", content: data.message }],
         model: "gpt-3.5-turbo",
       });
 
-      // Send response back to frontend
       io.emit("message", { message: completion.choices[0].message.content });
     } catch (error) {
       console.error("Error:", error.message);
-      // Send error message back to frontend
       io.emit("message", {
         message: "An error occurred. Please try again later.",
       });
     }
   });
 
-  // Handle disconnection
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });
