@@ -11,7 +11,7 @@ require("dotenv").config();
 // Initialize OpenAI API
 app.use(
   cors({
-    origin: ["https://code-alpha-chatbot-server.vercel.app/"],
+    origin: ["http://localhost:3000"],
     methods: ["POST", "GET"],
     credentials: true,
   })
