@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "https://textiai.vercel.app/", // Adjust this to match the domain of your deployed frontend
+    origin: "*", // Adjust this to match the domain of your deployed frontend
     methods: ["GET", "POST"],
   },
 });
