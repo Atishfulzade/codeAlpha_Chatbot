@@ -3,6 +3,7 @@ const cors = require("cors");
 const http = require("http");
 const socketIo = require("socket.io");
 const OpenAI = require("openai");
+const { log } = require("console");
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
