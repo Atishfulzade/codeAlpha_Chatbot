@@ -4,7 +4,7 @@ import InputForm from "./component/input";
 import Response from "./component/response";
 import { io } from "socket.io-client";
 
-const server = "https://code-alpha-chatbot.vercel.app/";
+const server = "https://code-alpha-chatbot-sigma.vercel.app/";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
