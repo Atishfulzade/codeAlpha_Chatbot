@@ -4,7 +4,7 @@ import InputForm from "./component/input";
 import Response from "./component/response";
 import { io } from "socket.io-client";
 
-const server = "http://localhost:3000";
+const server = "https://textiai-backend-67cca2a9f0a6.herokuapp.com/";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
