@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "*", // Adjust this to match the domain of your deployed frontend
+    origin: "https://textiai.vercel.app/", // Adjust this to match the domain of your deployed frontend
     methods: ["GET", "POST"],
   },
 });
@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
 
 // Define route for homepage
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Hello World ");
 });
 
 const PORT = process.env.PORT || 3000;
