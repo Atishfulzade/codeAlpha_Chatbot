@@ -12,7 +12,7 @@ TextiAi Chatbot is an AI-powered chatbot designed to engage in conversations wit
 - Real-time communication using Socket.IO
 
 ### Deployment
-The project is deployed and can be accessed [here](https://code-alpha-chatbot-17ospy39u-atishs-projects-55a5a6a4.vercel.app/).
+The project is deployed and can be accessed [here](https://textiai.vercel.app/).
 
 ### Usage
 1. Simply open the deployed site in your web browser.
